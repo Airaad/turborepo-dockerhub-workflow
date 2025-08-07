@@ -42,12 +42,10 @@ services:
     depends_on:
       - postgres
 
-  test-app-frontend:
+  frontend:
     build:
       context: .
       dockerfile: docker/Dockerfile.frontend
-      args:
-        - DATABASE_URL=postgresql://postgres:mysecretpassword@postgres:5432/postgres
 
     container_name: test-app-frontend
 
