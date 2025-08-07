@@ -1,31 +1,44 @@
 services:
   postgres:
     image: postgres
+
     environment:
       - POSTGRES_PASSWORD=mysecretpassword
+
     ports:
       - 5432:5432
+
     volumes:
       - postgres_data:/var/lib/postgresql/data
-  test-app-backend:
+  backend:
     build:
       context: .
       dockerfile: docker/Dockerfile.httpbackend
+
+    container_name: test-app-backend
+
     ports:
       - 8081:8081
+
     environment:
       - DATABASE_URL=postgresql://postgres:mysecretpassword@postgres:5432/postgres
+
     depends_on:
       - postgres
 
-  test-app-websocket:
+  websocket:
     build:
       context: .
       dockerfile: docker/Dockerfile.wsbackend
+
+    container_name: test-app-websocket
+
     ports:
       - 8080:8080
+
     environment:
       - DATABASE_URL=postgresql://postgres:mysecretpassword@postgres:5432/postgres
+
     depends_on:
       - postgres
 
@@ -35,10 +48,15 @@ services:
       dockerfile: docker/Dockerfile.frontend
       args:
         - DATABASE_URL=postgresql://postgres:mysecretpassword@postgres:5432/postgres
+
+    container_name: test-app-frontend
+
     ports:
       - 3000:3000
+
     environment:
       - DATABASE_URL=postgresql://postgres:mysecretpassword@postgres:5432/postgres
+      
     depends_on:
       - postgres
 
