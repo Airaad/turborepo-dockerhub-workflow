@@ -21,6 +21,6 @@ jobs:
           context: .
           file: ./docker/Dockerfile.wsbackend
           push: true
-          tags: test-app-websocket:${{ github.sha }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/test-app-websocket:${{ github.sha }}
           
   

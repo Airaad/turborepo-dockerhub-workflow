@@ -21,6 +21,6 @@ jobs:
           context: .
           file: ./docker/Dockerfile.httpbackend
           push: true
-          tags: test-app-backend:${{ github.sha }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/test-app-backend:${{ github.sha }}
           
   
