@@ -21,6 +21,6 @@ jobs:
           context: .
           file: ./docker/Dockerfile.frontend
           push: true
-          tag: test-app-frontend:${{ github.sha }}
+          tags: test-app-frontend:${{ github.sha }}
           
   

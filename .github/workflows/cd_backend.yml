@@ -21,6 +21,6 @@ jobs:
           context: .
           file: ./docker/Dockerfile.backend
           push: true
-          tag: test-app-backend:${{ github.sha }}
+          tags: test-app-backend:${{ github.sha }}
           
   
